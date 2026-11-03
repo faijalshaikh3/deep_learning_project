@@ -239,10 +239,4 @@ Through this project, we explored:
 
 
 
-B.Tech Computer Engineering
 
-GitHub: [yashgatkal22](https://github.com/yashgatkal22)
-
----
-
-If you find this project useful, consider giving the repository a ⭐ on GitHub.
