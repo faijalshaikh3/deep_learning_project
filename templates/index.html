@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Real-Time Object Detection and Counting Using YOLO</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body>
+    <header class="topbar">
+        <div class="container nav-bar">
+            <div class="brand">YOLO Vision</div>
+            <nav>
+                <a href="#home">Home</a>
+                <a href="#live-detection">Live Detection</a>
+                <a href="#uploads">Uploads</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container page-content" id="home">
+        <section class="hero panel">
+            <div class="hero-copy">
+                <p class="eyebrow">Deep Learning Mini Project</p>
+                <h1>Real-Time Object Detection and Counting Using YOLO</h1>
+                <p>
+                    A web application that uses a pretrained YOLO model to detect objects in live webcam streams,
+                    uploaded images, and uploaded videos. Live webcam mode also estimates a few body poses.
+                </p>
+                <div class="button-row">
+                    <button id="startCameraBtn" class="primary-btn">Start Camera</button>
+                    <button id="stopCameraBtn" class="secondary-btn">Stop Camera</button>
+                </div>
+                <p id="cameraStatus" class="status-text">Camera is ready.</p>
+            </div>
+        </section>
+
+        <section class="panel live-section" id="live-detection">
+            <div class="section-heading">
+                <h2>Live Detection</h2>
+            </div>
+            <div class="video-frame">
+                <img id="liveVideo" src="" alt="Live object detection feed" />
+            </div>
+        </section>
+
+        <section class="stats-panel panel">
+            <div class="section-heading">
+                <h2>Detection Statistics</h2>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-label">FPS</span>
+                    <strong id="fpsValue">0</strong>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Total Objects</span>
+                    <strong id="totalObjects">0</strong>
+                </div>
+            </div>
+
+            <div class="count-box">
+                <h3>Object Counts</h3>
+                <ul id="countList">
+                    <li>No objects detected yet.</li>
+                </ul>
+            </div>
+            <div class="count-box activity-box">
+                <h3>Live Activity / Pose</h3>
+                <ul id="activityList">
+                    <li>Start the webcam to recognize poses.</li>
+                </ul>
+                <p class="helper-text">
+                    Pose estimates: hands raised, arms spread, and crouching. Best results with one person fully in view.
+                </p>
+            </div>
+        </section>
+
+        <section class="upload-grid panel" id="uploads">
+            <div class="upload-card">
+                <h3>Upload Image</h3>
+                <form id="imageUploadForm" enctype="multipart/form-data">
+                    <input type="file" id="imageInput" name="image" accept=".png,.jpg,.jpeg,.webp" required />
+                    <button type="submit" class="primary-btn">Process Image</button>
+                </form>
+                <div class="result-container">
+                    <img id="processedImage" src="" alt="Processed image result" />
+                </div>
+                <p id="imageStatus" class="status-text"></p>
+            </div>
+
+            <div class="upload-card">
+                <h3>Video from YouTube URL</h3>
+                <form id="youtubeVideoForm">
+                    <input
+                        type="url"
+                        id="youtubeUrlInput"
+                        name="youtube_url"
+                        placeholder="https://www.youtube.com/watch?v=..."
+                        required
+                    />
+                    <button type="submit" class="primary-btn">Process YouTube Video</button>
+                </form>
+                <p class="helper-text">or upload a local video file below</p>
+                <form id="videoUploadForm" enctype="multipart/form-data">
+                    <input type="file" id="videoInput" name="video" accept=".mp4,.avi,.mov,.mkv,.webm" />
+                    <button type="submit" class="primary-btn">Process Local Video</button>
+                </form>
+                <div class="result-container">
+                    <video id="processedVideo" controls></video>
+                </div>
+                <p id="videoStatus" class="status-text"></p>
+            </div>
+        </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
