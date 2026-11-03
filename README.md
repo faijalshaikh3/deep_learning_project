@@ -1,302 +1,110 @@
-# 🔍 Real-Time Object Detection and Counting Using YOLO
+# Real-Time Object Detection and Counting Using YOLO
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Python-3.12-blue?logo=python" />
-  <img src="https://img.shields.io/badge/Flask-Web%20Framework-black?logo=flask" />
-  <img src="https://img.shields.io/badge/YOLOv8-Object%20Detection-purple" />
-  <img src="https://img.shields.io/badge/OpenCV-Computer%20Vision-green?logo=opencv" />
-  <img src="https://img.shields.io/badge/Status-Completed-success" />
-</p>
+![Python](https://img.shields.io/badge/Python-3.12-blue)
+![Flask](https://img.shields.io/badge/Flask-Web%20Framework-black)
+![YOLOv8](https://img.shields.io/badge/YOLOv8-Object%20Detection-green)
+![OpenCV](https://img.shields.io/badge/OpenCV-Computer%20Vision-red)
 
-<p align="center">
-  A real-time computer vision application for object detection, object counting, and human pose estimation using pretrained YOLO models.
-</p>
+## Table of Contents
 
----
+- [Overview](#overview)
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [System Architecture](#system-architecture)
+- [How It Works](#how-it-works)
+- [Project Structure](#project-structure)
+- [Installation and Setup](#installation-and-setup)
+- [Usage](#usage)
+- [Models Used](#models-used)
+- [Limitations](#limitations)
+- [Future Improvements](#future-improvements)
+- [Learning Outcomes](#learning-outcomes)
+  
 
-## 📌 Table of Contents
+## Overview
 
-- [Project Overview](#-project-overview)
-- [Key Features](#-key-features)
-- [Project Demo](#-project-demo)
-- [Screenshots](#-screenshots)
-- [Technologies Used](#-technologies-used)
-- [System Architecture](#-system-architecture)
-- [How YOLO Works](#-how-yolo-works)
-- [Installation](#-installation-and-setup)
-- [How to Run](#-how-to-run-the-project)
-- [How to Use](#-how-to-use-the-application)
-- [Project Structure](#-project-structure)
-- [Future Improvements](#-future-improvements)
-- [Limitations](#-limitations)
+This project is a real-time object detection and counting system developed using **YOLOv8, OpenCV, and Flask**.
 
-## 🚀 Project Overview
+It uses a pretrained YOLO model to identify and count objects from webcam streams, uploaded images, and uploaded videos. The application displays detected objects with bounding boxes, class labels, confidence scores, and object counts.
 
-Real-Time Object Detection and Counting Using YOLO is a beginner-friendly deep learning mini-project that demonstrates how pretrained YOLO models can be integrated into a web application.
+The webcam module also includes basic human pose estimation to identify selected body movements using a pretrained YOLO pose model.
 
-The application processes live webcam feeds, uploaded images, and uploaded videos. It identifies objects, draws bounding boxes, displays class labels and confidence scores, and calculates object counts by category.
+The project provides a simple web-based interface for exploring real-time object detection and computer vision applications.
 
-It also includes human pose estimation in webcam mode to identify approximate poses such as:
+## Features
+
+| Feature | Description |
+|---|---|
+| Real-Time Webcam Detection | Detects objects directly through a webcam. |
+| Image Detection | Detects and identifies objects in uploaded images. |
+| Video Detection | Processes uploaded videos and detects objects across frames. |
+| Object Counting | Displays class-wise and total detection counts. |
+| Bounding Boxes | Highlights detected objects with rectangular bounding boxes. |
+| Confidence Scores | Displays the confidence score for each detection. |
+| FPS Display | Shows the processing frame rate during detection. |
+| Human Pose Estimation | Identifies selected body movements using pose keypoints. |
+
+### Human Pose Estimation
+
+The webcam module uses a pretrained YOLOv8 pose model to identify human body keypoints.
+
+Based on the detected keypoints and simple geometric rules, the application identifies selected movements:
 
 - Hands Raised
 - Arms Spread
 - Crouching
 
-The application combines deep learning, computer vision, backend development, and frontend technologies to provide an interactive object detection experience.
-
-## ✨ Key Features
-
-| Feature | Description |
-|---|---|
-| 📷 Real-Time Detection | Detect objects through a live webcam feed |
-| 🖼️ Image Detection | Upload images and visualize detected objects |
-| 🎥 Video Detection | Process uploaded videos frame by frame |
-| 🧍 Pose Estimation | Estimate human body keypoints and selected poses |
-| 📦 Bounding Boxes | Highlight detected objects with rectangles |
-| 🏷️ Object Labels | Display predicted class names |
-| 📊 Object Counting | Calculate class-wise detection counts |
-| ⚡ FPS Display | Show the estimated processing speed |
-| 📱 Responsive UI | Interactive and clean web interface |
-| ⚠️ Error Handling | Handle invalid files and unsupported formats |
-
-## 🎬 Project Demo
-
-The following section is reserved for a short demonstration of the application.
-
-<!-- Add your recorded demo GIF at docs/images/demo.gif and uncomment the next line -->
-
-<!-- ![YOLO Real-Time Object Detection Demo](docs/images/demo.gif) -->
-
-**Demo highlights:**
-- Real-time webcam object detection
-- Bounding boxes and confidence scores
-- Live object counting
-- Human pose estimation
-- Image and video processing
-
-## Demo Video
-
-[![YOLOv8 Real-Time Object Detection](https://img.youtube.com/vi/IHbJcOex6dk/0.jpg)](https://www.youtube.com/watch?v=IHbJcOex6dk)
-
-*External demonstration of YOLOv8 real-time webcam object detection.*
-
-## 📸 Screenshots
-
-The following screenshots will demonstrate the application's main functionalities.
-
-### 1. Application Dashboard
-
-<!-- Add dashboard.png to docs/images and uncomment -->
-
-<!-- ![Application Dashboard](docs/images/dashboard.png) -->
-
-### 2. Real-Time Webcam Detection
-
-<!-- Add webcam-detection.png to docs/images and uncomment -->
-
-<!-- ![Real-Time Webcam Detection](docs/images/webcam-detection.png) -->
-
-### 3. Human Pose Estimation
-
-<!-- Add pose-estimation.png to docs/images and uncomment -->
-
-<!-- ![Human Pose Estimation](docs/images/pose-estimation.png) -->
-
-### 4. Image Detection Output
-
-<!-- Add image-detection.png to docs/images and uncomment -->
-
-<!-- ![Image Detection](docs/images/image-detection.png) -->
-
-### 5. Video Detection Output
-
-<!-- Add video-detection.png to docs/images and uncomment -->
-
-<!-- ![Video Detection](docs/images/video-detection.png) -->
-
-## 🛠️ Technologies Used
+## Technologies Used
 
 | Technology | Purpose |
 |---|---|
-| Python 3.12 | Backend programming |
-| Flask | Web application framework |
-| Ultralytics YOLO | Object detection and pose estimation |
-| YOLOv8n | Pretrained object detection model |
-| YOLOv8n-Pose | Human pose estimation model |
+| Python | Main programming language |
+| Flask | Backend web framework |
+| Ultralytics YOLOv8 | Object detection and pose estimation |
 | OpenCV | Image and video processing |
 | NumPy | Numerical operations |
-| HTML5 | Frontend structure |
-| CSS3 | Frontend styling |
+| HTML5 | Web page structure |
+| CSS3 | Styling and layout |
 | JavaScript | Frontend interactions |
-| Bootstrap | Optional UI framework |
+| Bootstrap | Optional responsive UI components |
 
-## 🏗️ System Architecture
+## System Architecture
 
-The application follows a client-server architecture.
-
-```mermaid
-flowchart TD
-    A[User Input] --> B[Web Interface]
-    B --> C[Flask Backend]
-    C --> D[OpenCV Processing]
-    D --> E[Pretrained YOLO Models]
-    E --> F[Object Detection]
-    E --> G[Pose Estimation]
-    F --> H[Bounding Boxes and Labels]
-    G --> I[Keypoints and Pose Labels]
-    H --> J[Statistics and Results]
-    I --> J
-    J --> K[Display Results in Browser]
-```
-
-### Architecture Components
-
-**1. Presentation Layer**
-- HTML provides the application structure.
-- CSS handles styling and layout.
-- JavaScript manages user interactions and results.
-
-**2. Backend Layer**
-- Flask handles HTTP requests.
-- Processes uploaded files.
-- Manages application routes and responses.
-
-**3. Computer Vision Layer**
-- OpenCV captures webcam frames.
-- Reads uploaded images and videos.
-- Draws bounding boxes and annotations.
-
-**4. Deep Learning Layer**
-- Ultralytics YOLO performs object detection.
-- YOLOv8 Pose estimates human body keypoints.
-- Detection results are processed and displayed.
-
-## 🧠 How YOLO Works
-
-YOLO stands for **You Only Look Once**.
-
-It is an object detection algorithm that predicts object locations and classes in a single neural network inference pass.
-
-### Object Detection Pipeline
+The application follows a simple web-based architecture.
 
 ```mermaid
 flowchart TD
-    A[Input Image or Video Frame] --> B[Image Preprocessing]
-    B --> C[YOLO Neural Network]
-    C --> D[Object Predictions]
-    D --> E[Confidence Filtering]
-    E --> F[Non-Maximum Suppression]
-    F --> G[Bounding Boxes and Class Labels]
-    G --> H[Object Counting]
-    H --> I[Display Output]
+    A[User] --> B[Flask Web Application]
+    B --> C{Input Source}
+    C --> D[Webcam]
+    C --> E[Uploaded Image]
+    C --> F[Uploaded Video]
+    D --> G[YOLOv8 Processing]
+    E --> G
+    F --> G
+    G --> H[Object Detection]
+    H --> I[Bounding Boxes and Labels]
+    I --> J[Object Counting and Confidence]
+    J --> K[Results Display]
+    D --> L[YOLOv8 Pose Model]
+    L --> M[Keypoint Detection]
+    M --> N[Pose Identification]
+    N --> K
 ```
 
-### Important YOLO Concepts
+## How It Works
 
-- **Bounding Box:** A rectangle representing the location of a detected object.
-- **Class Label:** The predicted category of an object.
-- **Confidence Score:** The model's confidence score for a detection.
-- **IoU:** Intersection over Union, used to measure the overlap between bounding boxes.
-- **NMS:** Non-Maximum Suppression, used to remove duplicate overlapping detections.
-- **Inference:** Using an already-trained model to make predictions.
+The application processes input through the following steps:
 
-### Model Configuration
+1. **Input Selection:** The user selects webcam detection, image upload, or video upload.
+2. **Frame Processing:** OpenCV reads the image or video frames.
+3. **Object Detection:** The pretrained YOLOv8 model identifies objects.
+4. **Bounding Box Generation:** Detected objects are highlighted with bounding boxes and labels.
+5. **Object Counting:** The application calculates class-wise and total detection counts.
+6. **Result Display:** The processed output and detection information are displayed through the Flask web application.
+7. **Pose Estimation:** In webcam mode, the YOLOv8 pose model detects body keypoints and applies geometric rules to identify selected movements.
 
-| Parameter | Value |
-|---|---|
-| Object Detection Model | YOLOv8n |
-| Pose Estimation Model | YOLOv8n-Pose |
-| Confidence Threshold | 0.25 |
-| IoU Threshold | 0.45 |
-| Image Size | 640 |
-
-## ⚙️ Installation and Setup
-
-### Prerequisites
-
-Make sure you have installed:
-
-- Python 3.12
-- Git
-- Visual Studio Code (recommended)
-- A webcam (for real-time detection)
-
-### Step 1: Clone the Repository
-
-```bash
-git clone https://github.com/yashgatkal22/DL-Miniproject.git
-```
-
-### Step 2: Navigate to the Project Folder
-
-```bash
-cd DL-Miniproject
-```
-
-### Step 3: Create a Virtual Environment
-
-```bash
-python -m venv .venv
-```
-
-### Step 4: Activate the Environment
-
-For Windows:
-
-```bash
-.venv\Scripts\activate
-```
-
-### Step 5: Install Dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-## ▶️ How to Run the Project
-
-Run the following command:
-
-```bash
-python app.py
-```
-
-Open your browser and navigate to:
-
-```text
-http://127.0.0.1:5000/
-```
-
-The application dashboard will open.
-
-## 💻 How to Use the Application
-
-### 1. Webcam Detection
-
-1. Open the application dashboard.
-2. Click the Start Camera button.
-3. Allow camera access if prompted.
-4. View real-time object detection.
-5. Monitor object counts, confidence scores, FPS, and pose labels.
-6. Click Stop Camera to stop the detection.
-
-### 2. Image Detection
-
-1. Open the Upload Image section.
-2. Select an image file.
-3. Click Process Image.
-4. View the processed image with bounding boxes and labels.
-5. Check the detection statistics.
-
-### 3. Video Detection
-
-1. Open the video upload section.
-2. Select a video file.
-3. Click Process Video.
-4. The application processes the video frame by frame.
-5. View the processed output video and detection statistics.
-
-## 📁 Project Structure
+## Project Structure
 
 ```text
 DL-Miniproject/
@@ -304,7 +112,6 @@ DL-Miniproject/
 ├── app.py
 ├── requirements.txt
 ├── test_app.py
-├── README.md
 ├── .gitignore
 │
 ├── yolov8n.pt
@@ -315,60 +122,127 @@ DL-Miniproject/
 │
 ├── static/
 │   ├── css/
+│   │   └── style.css
+│   │
 │   └── js/
+│       └── script.js
 │
 └── docs/
-    └── images/
-        ├── dashboard.png
-        ├── webcam-detection.png
-        ├── pose-estimation.png
-        ├── image-detection.png
-        ├── video-detection.png
-        └── demo.gif
 ```
 
-*The images folder and its files are to be added for the README screenshots and demo.*
+## Installation and Setup
 
-## 🔮 Future Improvements
+Follow these steps to run the project locally.
 
-- Add custom YOLO model selection.
-- Implement object tracking for unique object counting.
-- Add multi-camera support.
-- Improve pose classification accuracy.
-- Add count summaries over time intervals.
-- Develop an advanced analytics dashboard.
-- Deploy the application on a cloud platform.
+### 1. Clone the Repository
 
-## ⚠️ Limitations
+```bash
+git clone https://github.com/yashgatkal22/DL-Miniproject.git
+```
 
-- The project uses pretrained models and does not include custom model training.
-- Pose labels are estimated using body keypoints and simple geometric rules.
-- Pose estimation may reduce FPS when running alongside object detection.
-- Video counts represent detections across processed frames, not unique tracked objects.
-- Detection performance depends on lighting, image quality, hardware, and object visibility.
+### 2. Navigate to the Project Directory
 
-## 🎓 Learning Outcomes
+```bash
+cd DL-Miniproject
+```
 
-Through this project, the following concepts were explored:
+### 3. Create a Virtual Environment (Optional)
 
-- Deep learning and pretrained YOLO models.
-- Real-time object detection.
-- Human pose estimation.
+```bash
+python -m venv venv
+```
+
+Activate the environment:
+
+**Windows:**
+
+```bash
+venv\Scripts\activate
+```
+
+**Linux / macOS:**
+
+```bash
+source venv/bin/activate
+```
+
+### 4. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 5. Run the Application
+
+```bash
+python app.py
+```
+
+### 6. Open in Browser
+
+Open the following URL in your browser:
+
+```text
+http://127.0.0.1:5000/
+```
+
+## Usage
+
+1. Start the Flask application.
+2. Open the application in your browser.
+3. Select the required detection option.
+4. For webcam detection, allow camera access.
+5. For image or video detection, upload the required file.
+6. View the processed output, detected objects, confidence scores, and object counts.
+
+## Models Used
+
+### 1. YOLOv8 Object Detection Model
+
+**Model:** `yolov8n.pt`
+
+The pretrained YOLOv8 Nano model is used for detecting and identifying objects in webcam streams, images, and videos.
+
+### 2. YOLOv8 Pose Estimation Model
+
+**Model:** `yolov8n-pose.pt`
+
+The pretrained YOLOv8 Nano Pose model is used in webcam mode to detect human body keypoints. These keypoints are used with simple geometric rules to identify selected body movements.
+
+## Limitations
+
+- Detection accuracy depends on image quality, lighting conditions, and object visibility.
+- Processing performance depends on the available hardware.
+- Pose estimation may be affected by camera angle, body visibility, and overlapping people.
+- Pose identification uses basic geometric rules rather than a separately trained activity classification model.
+- Video object counts represent accumulated detections across frames and are not unique tracked-object counts.
+
+## Future Improvements
+
+- Implement object tracking to maintain object identities across video frames.
+- Improve object counting accuracy by avoiding repeated counts across frames.
+- Enhance pose estimation for more body movements.
+- Optimize processing performance for smoother real-time detection.
+- Improve the user interface and overall application experience.
+
+## Learning Outcomes
+
+Through this project, we explored:
+
+- Practical implementation of pretrained YOLO models.
+- Real-time object detection using computer vision.
 - Image and video processing using OpenCV.
-- Flask backend development.
-- Frontend and backend integration.
-- Building interactive computer vision applications.
+- Integration of machine learning models with Flask.
+- Object counting and confidence score visualization.
+- Human pose estimation using body keypoints.
+- Development of a web-based deep learning application.
 
-## 👨‍💻 Author
 
-**Yash Gatkal**
 
 B.Tech Computer Engineering
 
-[GitHub Profile](https://github.com/yashgatkal22)
+GitHub: [yashgatkal22](https://github.com/yashgatkal22)
 
 ---
 
-<p align="center">
-  ⭐ If you find this project interesting, consider giving the repository a star!
-</p>
+If you find this project useful, consider giving the repository a ⭐ on GitHub.
