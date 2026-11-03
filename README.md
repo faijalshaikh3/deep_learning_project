@@ -74,7 +74,11 @@ The following section is reserved for a short demonstration of the application.
 - Human pose estimation
 - Image and video processing
 
-For a full-length demonstration, you can also add a link to your YouTube video here.
+## Demo Video
+
+[![YOLOv8 Real-Time Object Detection](https://img.youtube.com/vi/IHbJcOex6dk/0.jpg)](https://www.youtube.com/watch?v=IHbJcOex6dk)
+
+*External demonstration of YOLOv8 real-time webcam object detection.*
 
 ## 📸 Screenshots
 
